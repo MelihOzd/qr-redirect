@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>WebAR Demo</title>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: #000;
+  <meta charset="UTF-8">
+  <title>Rastgele Cihaza Göre Yönlendirme</title>
+  <script>
+    // iOS için Aero deep linkleri
+    const iosLinks = [
+      "aero://project/KqWRNL0t4Sb",
+      "aero://project/KPoHz3nu4Sb",
+      "aero://project/NYOfXpEu4Sb"
+    ];
+
+    // Android için intent linkleri
+    const androidLinks = [
+      "intent://project/KqWRNL0t4Sb#Intent;scheme=aero;package=com.adobe.aero;end;",
+      "intent://project/KPoHz3nu4Sb#Intent;scheme=aero;package=com.adobe.aero;end;",
+      "intent://project/NYOfXpEu4Sb#Intent;scheme=aero;package=com.adobe.aero;end;"
+    ];
+
+    // Uygulama yoksa fallback web linkleri
+    const fallbackLinks = [
+      "https://adobeaero.app.link/KqWRNL0t4Sb",
+      "https://adobeaero.app.link/KPoHz3nu4Sb",
+      "https://adobeaero.app.link/NYOfXpEu4Sb"
+    ];
+
+    function getRandomFrom(array) {
+      return array[Math.floor(Math.random() * array.length)];
     }
-    model-viewer {
-      width: 100%;
-      height: 100vh;
+
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      window.location.href = getRandomFrom(iosLinks);
+    } else if (/android/i.test(userAgent)) {
+      window.location.href = getRandomFrom(androidLinks);
+    } else {
+      window.location.href = getRandomFrom(fallbackLinks);
     }
-  </style>
+  </script>
 </head>
 <body>
-  <model-viewer 
-    src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-    ar 
-    ar-modes="scene-viewer quick-look webxr" 
-    camera-controls 
-    auto-rotate 
-    ios-src="https://modelviewer.dev/shared-assets/models/Astronaut.usdz">
-  </model-viewer>
+  <p style="color:white;text-align:center;margin-top:50px;">Yönlendiriliyorsunuz...</p>
 </body>
 </html>
-
