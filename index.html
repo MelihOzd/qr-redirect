@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Redirecting...</title>
-  <script>
-    const links = [
-      "https://adobeaero.app.link/KqWRNL0t4Sb",
-      "https://adobeaero.app.link/KPoHz3nu4Sb",
-      "https://adobeaero.app.link/NYOfXpEu4Sb"
-    ];
-
-    const randomLink = links[Math.floor(Math.random() * links.length)];
-    window.location.href = randomLink;
-  </script>
+  <meta charset="UTF-8" />
+  <title>WebAR Demo</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #000;
+    }
+    model-viewer {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
 </head>
 <body>
-  <p>Yönlendiriliyorsunuz...</p>
+  <model-viewer 
+    src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+    ar 
+    ar-modes="scene-viewer quick-look webxr" 
+    camera-controls 
+    auto-rotate 
+    ios-src="https://modelviewer.dev/shared-assets/models/Astronaut.usdz">
+  </model-viewer>
 </body>
 </html>
+
