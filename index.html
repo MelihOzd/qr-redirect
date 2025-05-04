@@ -2,62 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Rastgele Cihaza Göre Yönlendirme</title>
+  <title>Redirecting...</title>
   <script>
-    // iOS için Aero deep linkleri
-    const iosLinks = [
-      "aero://project/KqWRNL0t4Sb",
-      "aero://project/KPoHz3nu4Sb",
-      "aero://project/NYOfXpEu4Sb"
-    ];
-
-    // Android için intent linkleri
-    const androidLinks = [
-      "intent://project/KqWRNL0t4Sb#Intent;scheme=aero;package=com.adobe.aero;end;",
-      "intent://project/KPoHz3nu4Sb#Intent;scheme=aero;package=com.adobe.aero;end;",
-      "intent://project/NYOfXpEu4Sb#Intent;scheme=aero;package=com.adobe.aero;end;"
-    ];
-
-    // Uygulama yoksa fallback web linkleri (Aero Web AR deneyimi)
-    const fallbackLinks = [
+    const links = [
       "https://adobeaero.app.link/KqWRNL0t4Sb",
       "https://adobeaero.app.link/KPoHz3nu4Sb",
       "https://adobeaero.app.link/NYOfXpEu4Sb"
     ];
 
-    // Web AR Linki
-    const webARLink = "https://adobeaero.app.link"; // WebAR linki
-
-    function getRandomFrom(array) {
-      return array[Math.floor(Math.random() * array.length)];
-    }
-
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-    // iOS cihazları kontrol et
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      // iOS'ta Aero uygulaması var mı kontrol et
-      const start = Date.now();
-      window.location = getRandomFrom(iosLinks);
-      setTimeout(function() {
-        if (Date.now() - start < 2000) {
-          // Uygulama yoksa, Web AR deneyimine yönlendir
-          window.location = webARLink;
-        }
-      }, 1500);
-    }
-    // Android cihazları kontrol et
-    else if (/android/i.test(userAgent)) {
-      // Android'de Aero uygulaması yoksa, Web AR deneyimine yönlendir
-      window.location.href = getRandomFrom(androidLinks);
-    }
-    // Diğer cihazlar (Web üzerinden AR deneyimi)
-    else {
-      window.location.href = getRandomFrom(fallbackLinks);
-    }
+    const randomLink = links[Math.floor(Math.random() * links.length)];
+    window.location.href = randomLink;
   </script>
 </head>
 <body>
-  <p style="color:white;text-align:center;margin-top:50px;">Yönlendiriliyorsunuz...</p>
+  <p>Yönlendiriliyorsunuz...</p>
 </body>
 </html>
